@@ -8,9 +8,9 @@ import { SampleComponent } from './sample.component';
 
 const routes = [
     {
-        path     : 'sample',
-        component: SampleComponent
-    }
+        path: '',
+        component: SampleComponent,
+    },
 ];
 
 @NgModule({

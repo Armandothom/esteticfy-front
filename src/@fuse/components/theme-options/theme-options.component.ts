@@ -104,7 +104,7 @@ export class FuseThemeOptionsComponent implements OnInit, OnDestroy
 
                 // Update the stored config
                 this.fuseConfig = config;
-
+                console.log(this.fuseConfig)
                 // Set the config form values without emitting an event
                 // so that we don't end up with an infinite loop
                 this.form.setValue(config, {emitEvent: false});
@@ -129,26 +129,6 @@ export class FuseThemeOptionsComponent implements OnInit, OnDestroy
                 this._fuseConfigService.config = config;
             });
 
-        // Add customize nav item that opens the bar programmatically
-        const customFunctionNavItem = {
-            id      : 'custom-function',
-            title   : 'Custom Function',
-            type    : 'group',
-            icon    : 'settings',
-            children: [
-                {
-                    id      : 'customize',
-                    title   : 'Customize',
-                    type    : 'item',
-                    icon    : 'settings',
-                    function: () => {
-                        this.toggleSidebarOpen('themeOptionsPanel');
-                    }
-                }
-            ]
-        };
-
-        this._fuseNavigationService.addNavigationItem(customFunctionNavItem, 'end');
     }
 
     /**

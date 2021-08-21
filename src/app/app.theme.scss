@@ -8,6 +8,13 @@ $fuse-white: (
     )
 );
 
+$custom-pink: (
+    500: #cc3ca9,
+    contrast: (
+        500: $light-primary-text
+    )
+);
+
 $fuse-black: (
     500: black,
     contrast: (
@@ -52,7 +59,8 @@ $fuse-navy: (
 $custom_palettes: (
     fuse-white: $fuse-white,
     fuse-black: $fuse-black,
-    fuse-navy: $fuse-navy
+    fuse-navy: $fuse-navy,
+    custom-pink : $custom-pink
 );
 
 @include fuse-color-classes($custom_palettes);
@@ -95,7 +103,7 @@ $typography: mat-typography-config(
 
 // Define the primary, accent and warn palettes
 $default-primary-palette: mat-palette($fuse-navy);
-$default-accent-palette: mat-palette($mat-light-blue, 600, 400, 700);
+$default-accent-palette: mat-palette($custom-pink);
 $default-warn-palette: mat-palette($mat-red);
 
 // Create the Material theme object
