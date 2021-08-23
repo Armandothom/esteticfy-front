@@ -33,6 +33,10 @@ const appRoutes: Routes = [
         loadChildren: './main/atendente/atendente.module#AtendenteModule'
     },
     {
+        path      : 'salao',
+        loadChildren: './main/saloes/salao.module#SalaoModule'
+    },
+    {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
     }

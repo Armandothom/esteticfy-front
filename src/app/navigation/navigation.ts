@@ -20,7 +20,7 @@ export const navigation: FuseNavigation[] = [
         title: 'SALÕES',
         type: 'item',
         icon: 'store',
-        url: '/saloes',
+        url: '/salao',
     },
     {
         id: 'vendas',
