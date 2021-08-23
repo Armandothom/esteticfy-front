@@ -202,13 +202,13 @@ export class FilesDataSource extends DataSource<any>
                     [propertyA, propertyB] = [a.cpf, b.cpf];
                     break;
                 case 'endereco':
-                    [propertyA, propertyB] = [a.endereco, b.endereco];
+                    [propertyA, propertyB] = [a.endereco.toLowerCase(), b.endereco.toLowerCase()];
                     break;
                 case 'datanasc':
                     [propertyA, propertyB] = [moment(a.data_nascimento, "YYYY-MM-DD").toISOString(), moment(b.data_nascimento, "YYYY-MM-DD").toISOString()];
                     break;
                 case 'salao':
-                    [propertyA, propertyB] = [a.salao_nome, b.salao_nome];
+                    [propertyA, propertyB] = [a.salao_nome.toLowerCase(), b.salao_nome.toLowerCase()];
                     break;
             }
 
