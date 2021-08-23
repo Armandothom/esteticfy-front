@@ -1,0 +1,141 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/cliente'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="logo-icon s-32 mr-16"
+                            [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                            list_alt
+                        </mat-icon>
+                        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            Adicionar clientes
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" id="dados-clienteadd">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <legend>
+                    <strong>ADICIONAR CLIENTE</strong>
+                </legend>
+
+                <form name="clienteForm" [formGroup]="clienteForm" class="product w-100-p" 
+                (ngSubmit)="onSubmit()">
+
+                    <div class="tab-content p-24">
+                        <div 
+                        fxLayout="row" fxLayoutAlign="center center" 
+                        class="error-class"><span fxLayout="row" *ngIf="clienteForm.invalid && 
+                        (clienteForm.controls.nome.invalid && clienteForm.controls.nome.touched) ||
+                        (clienteForm.controls.cpf.invalid && clienteForm.controls.cpf.touched) ||
+                        (clienteForm.controls.endereco.invalid && clienteForm.controls.endereco.touched) ||
+                        (clienteForm.controls.data_nascimento.invalid && clienteForm.controls.data_nascimento.touched)"
+                        >Preencha todos os campos destacados.</span></div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Nome*</div>
+                            <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                                <input matInput autocomplete="off" formControlName="nome" 
+                                placeholder="Nome do cliente*">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Senha*</div>
+                            <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                                <input matInput autocomplete="off" formControlName="senha" 
+                                placeholder="Senha do cliente*">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%" fxFlex.xs="20px">CPF/CNPJ*</div>
+                            <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                                <input matInput autocomplete="off" formControlName="cpf" mask="000.000.000-00"
+                                placeholder="CPF/CNPJ*">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Endereço*</div>
+                            <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                                <input matInput autocomplete="off" formControlName="endereco" 
+                                placeholder="Endereço do cliente*">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Data Nascimento*</div>
+                            <mat-form-field fxFlex="60%" class="input-form"
+                                (click)="openPicker(inputDate, pickerCliente)">
+                                <input mask="00/00/0000" placeholder="Data do Nascimento*" #inputDate
+                                    formControlName="data_nascimento" matInput>
+                                <input style="display:none" 
+                                    (dateChange)="setValorDatePicker($event)" [matDatepicker]="pickerCliente">
+                                <mat-datepicker-toggle matSuffix [for]="pickerCliente"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi="true" #pickerCliente></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Salão Vinculado*</div>
+                            <mat-form-field fxFlex="60%" class="input-form">
+                                <input formControlName="salao_input" matInput [matAutocomplete]="salao"
+                                    placeholder="Salão Vinculado*">
+                                <button type="button" matSuffix mat-stroked-button>
+                                    <span class="material-icons">search</span>
+                                </button>
+                                <mat-autocomplete (optionSelected)="setFromSaloes($event)" #salao="matAutocomplete">
+                                    <mat-option *ngFor="let salao of opcoesSaloes | async" [value]="salao">
+                                        <span>{{salao.nome}}</span>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button class="submitButton" 
+                            [disabled]="!clienteForm.valid">Adicionar</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

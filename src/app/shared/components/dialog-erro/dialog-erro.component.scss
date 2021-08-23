@@ -1,0 +1,52 @@
+.mat-dialog-actions {
+    justify-content: center;
+    }   
+.mat-dialog-title
+{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+    color: red;
+}
+.mat-dialog-content
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 300px;
+
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+.material-icons
+{
+    position: relative;
+    right: 3px;
+    top: 1px;
+}
+:host::ng-deep .button-upgrade {
+    background-color: #342044 !important;
+    color: white !important;
+    width: 120px;
+    font-size: 20px;
+    height: 45px;
+}
+:host::ng-deep .wrapper-upgrade {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+:host::ng-deep .button-voltar {
+    background-color: #858282!important;
+    color: white !important;
+    width: 104px;
+    font-size: 20px;
+    height: 45px;
+    align-self: center;
+}
+
+:host::ng-deep .button-ok {
+    background-color: purple !important;
+    color: white !important;
+}

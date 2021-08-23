@@ -1,0 +1,23 @@
+<div mat-dialog-title class="mat-dialog-title">
+  <span class="material-icons">
+    error
+  </span>{{titleErro}}
+</div>
+<div mat-dialog-content style="text-align: center;" class="mat-dialog-content">
+  <div *ngIf="batchMsg">
+    <div *ngFor="let erro of bodyErro ; let i = index">
+      {{erro}}
+      <br *ngIf="i !== (bodyErro.length - 1)">
+    </div>
+  </div>
+  <div *ngIf="!batchMsg">
+    {{bodyErro}}<div *ngIf="clickableLink">&nbsp;<b>faça upgrade</b>&nbsp;do seu plano.</div>
+  </div>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-stroked-button (click)="close()" *ngIf="!clickableLink" class="button-ok">OK</button>
+  <div *ngIf="clickableLink" class="wrapper-upgrade">
+    <button mat-stroked-button (click)="close()" *ngIf="clickableLink" class="button-voltar">Voltar</button>
+    <button mat-stroked-button (click)="redirectUpgrade()" *ngIf="clickableLink" class="button-upgrade">Upgrade</button>
+  </div>
+</div>

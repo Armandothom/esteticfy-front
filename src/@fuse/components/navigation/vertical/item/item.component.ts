@@ -48,7 +48,6 @@ export class FuseNavVerticalItemComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        console.log(this.item)
         // Subscribe to navigation item
         merge(
             this._fuseNavigationService.onNavigationItemAdded,

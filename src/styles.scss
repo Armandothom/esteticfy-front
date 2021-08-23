@@ -3,3 +3,13 @@
 
 // Import app.theme.scss
 @import "app/app.theme";
+
+.snackbar {
+    background-color: green !important;
+    color: white !important;
+    text-align: center;
+    .mat-simple-snackbar {
+        justify-content: center !important;
+        font-size: 15px !important;
+    }
+}

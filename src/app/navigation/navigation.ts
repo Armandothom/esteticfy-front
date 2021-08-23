@@ -6,7 +6,7 @@ export const navigation: FuseNavigation[] = [
         title: 'CLIENTES',
         type: 'item',
         icon: 'person',
-        url: '/sample',
+        url: '/cliente',
     },
     {
         id: 'saloes',

@@ -18,8 +18,16 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from './main/sample/sample.module';
+import { ApiService } from './shared/services/api.service';
+import { LoadingDialogComponent } from './shared/components/loading-dialog/loading-dialog.component';
+import { DialogErro } from './shared/components/dialog-erro/dialog-erro.component';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 const appRoutes: Routes = [
+    {
+        path      : 'cliente',
+        loadChildren: './main/cliente/cliente.module#ClienteModule'
+    },
     {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
@@ -28,7 +36,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoadingDialogComponent,
+        DialogErro
     ],
     imports     : [
         BrowserModule,
@@ -54,9 +64,17 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
+        MatProgressSpinnerModule
     ],
     bootstrap   : [
         AppComponent
+    ],
+    providers : [
+        ApiService
+    ],
+    entryComponents : [
+        LoadingDialogComponent,
+        DialogErro
     ]
 })
 export class AppModule

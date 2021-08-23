@@ -1,0 +1,155 @@
+#product {
+
+    .header {
+
+        .product-image {
+            overflow: hidden;
+            width: 56px;
+            min-width: 56px;
+            max-width: 56px;
+            height: 56px;
+            min-height: 56px;
+            max-height: 56px;
+            border-radius: 4px;
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        .subtitle {
+            margin: 6px 0 0 0;
+        }
+    }
+
+    .content {
+
+        .mat-tab-group,
+        .mat-tab-body-wrapper,
+        .tab-content{
+            flex: 1 1 auto;
+            max-width: 100%;
+        }
+        .mat-button-toggle-checked.ativo-button
+        {
+            background-color: #815d9e;
+            color: white;
+        }
+        .error-class
+        {
+            margin: 0px 0px 16px 0px;
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            height: 0px;
+        }
+        .campo-form
+        {
+            font-size: 18px;
+            margin-right: 5px;
+            text-align: right;
+            color: #342044;
+        }
+        legend
+        {
+            color: #342044;
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 12px;
+            border-bottom: 1px solid #e5e5e5;
+            width: 100%;
+            text-align: center;
+             strong
+             {
+                 margin-left: 20px;
+             }
+        }
+        .submitButton
+        {
+            background-color: #880e4f;
+            color: white;
+            font-size: 20px;
+            padding: 4px 24px;
+            margin-top: 1%;
+        }
+        input
+        {
+            color: grey;
+            font-size: 18px;
+            padding: 0px 3px;
+        }
+        input:focus
+        {
+            color: rgba(0, 0, 0, 0.87);
+        }
+        .button-edit
+        {
+            color: purple;
+            margin-left: 5px;
+            padding: 2px;
+            line-height: 5px;
+            min-width: 45px;
+            position: relative;
+            left: 50px;
+            background-color: rgb(243, 239, 239);
+        }
+        .mat-tab-body-content {
+            display: flex;
+        }
+
+        .mat-tab-label {
+            height: 64px;
+        }
+
+        .product-image {
+            overflow: hidden;
+            width: 128px;
+            height: 128px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .campo-form, .error-class, input
+            {
+                font-size: 16px;
+            }
+            .error-class
+            {
+                text-align: center;
+            }
+            .mat-form-field
+            {
+                width: 250px;
+            }
+            .campo-form
+            {
+                display: none;
+            }
+            .checkrec
+            {
+                display: flex;
+            }
+            .checkempresa
+            {
+                display: flex;
+            }
+        }
+        // Temporary prefix alignment fix
+        .mat-form-field-appearance-outline .mat-form-field-prefix,
+        .mat-form-field-appearance-outline .mat-form-field-suffix {
+            top: 0;
+        }
+    }
+    .mat-select-disabled .mat-select-value {
+        color: rgba(0, 0, 0, 0.87) !important;
+    }
+}
