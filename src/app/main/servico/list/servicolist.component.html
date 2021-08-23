@@ -1,0 +1,97 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    person
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    Serviços
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" t="row" fxLayoutAlign="start center">
+                    <input #filter [(ngModel)]="inputSearch" placeholder="Buscar por...">
+                    <mat-icon *ngIf="inputSearch.length < 3">search</mat-icon>
+                    <mat-icon class="clear-search" 
+                    *ngIf="inputSearch.length > 2" (click)="resetInput()">cancel</mat-icon>
+                </div>
+            </div>
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <button mat-raised-button [routerLink]="'/servico/add'"
+                class="add-product-button fuse-white mt-24 mt-md-0" id="novo-registro-servicolist">
+                <mat-icon>add</mat-icon>
+                <span class="add-registro-span">Novo Serviço</span>
+            </button>
+            <!-- / ADD BUTTON -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" id="servicolist-dados">
+
+            <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+                fusePerfectScrollbar>
+
+
+                <ng-container matColumnDef="nome">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+                    <mat-cell *matCellDef="let serv" >
+                        <p class="nome-relatorio font-weight-400">{{serv.nome}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="acoes">
+                    <mat-header-cell fxFlex="100px" fxFlex.xs="70px" *matHeaderCellDef mat-sort-header >Ações
+                    </mat-header-cell>
+                    <mat-cell fxFlex="100px" fxFlex.xs="70px" *matCellDef="let serv">
+                        <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                            (click)="$event.stopPropagation()" class="action-button">
+                            <mat-icon class="secondary-text">more_vert</mat-icon>
+                        </button>
+                        <mat-menu #moreMenu="matMenu" class="menu-action">
+                            <button mat-menu-item aria-label="toggle important" [routerLink]="['/servico/edit', serv.id]">
+                                <mat-icon id="edit-icon">edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+
+                            <button mat-menu-item aria-label="toggle important" (click)="excluirServiço(serv.id)">
+                                <mat-icon id="cancel-icon">cancel</mat-icon>
+                                <span>Excluir</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+
+                <mat-row *matRowDef="let serv; columns: displayedColumns;" matRipple>
+                </mat-row>
+
+            </mat-table>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+</div>

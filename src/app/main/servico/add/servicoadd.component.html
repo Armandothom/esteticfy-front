@@ -1,0 +1,83 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/servico'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="logo-icon s-32 mr-16"
+                            [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                            list_alt
+                        </mat-icon>
+                        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            Adicionar serviço
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" id="dados-servicoadd">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <legend>
+                    <strong>ADICIONAR SERVIÇO</strong>
+                </legend>
+
+                <form name="servicoForm" [formGroup]="servicoForm" class="product w-100-p" 
+                (ngSubmit)="onSubmit()">
+
+                    <div class="tab-content p-24">
+                        <div 
+                        fxLayout="row" fxLayoutAlign="center center" 
+                        class="error-class"><span fxLayout="row" *ngIf="servicoForm.invalid && 
+                        (servicoForm.controls.nome.invalid && servicoForm.controls.nome.touched)"
+                        >Preencha todos os campos destacados.</span></div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Nome*</div>
+                            <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                                <input matInput autocomplete="off" formControlName="nome" 
+                                placeholder="Nome do serviço*">
+                            </mat-form-field>
+                        </div>
+                        
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button class="submitButton" 
+                            [disabled]="!servicoForm.valid">Adicionar</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
