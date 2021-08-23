@@ -29,6 +29,10 @@ const appRoutes: Routes = [
         loadChildren: './main/cliente/cliente.module#ClienteModule'
     },
     {
+        path      : 'atendente',
+        loadChildren: './main/atendente/atendente.module#AtendenteModule'
+    },
+    {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
     }

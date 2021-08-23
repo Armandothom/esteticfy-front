@@ -7,24 +7,24 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 
-import { ClienteListService } from './clientelist.service';
+import { AtendenteListService } from './atendentelist.service';
 import { takeUntil } from 'rxjs/internal/operators';
-import { ClienteService } from '../cliente.service';
+import { AtendenteService } from '../atendente.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { LoadingDialogComponent } from 'app/shared/components/loading-dialog/loading-dialog.component';
 import * as moment from 'moment';
 
 @Component({
-    selector: 'cliente-list',
-    templateUrl: './clientelist.component.html',
-    styleUrls: ['./clientelist.component.scss'],
+    selector: 'atendente-list',
+    templateUrl: './atendentelist.component.html',
+    styleUrls: ['./atendentelist.component.scss'],
     animations: fuseAnimations,
     encapsulation: ViewEncapsulation.None
 })
-export class ClienteListComponent implements OnInit {
+export class AtendenteListComponent implements OnInit {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['nome', 'cpf', 'endereco', 'datanasc', 'salao', 'acoes'];
+    displayedColumns = ['nome', 'cpf', 'endereco', 'cargo', 'datanasc', 'salao', 'acoes'];
     inputSearch = '';
     @ViewChild(MatPaginator, { static: true })
     paginator: MatPaginator;
@@ -39,8 +39,8 @@ export class ClienteListComponent implements OnInit {
     private _unsubscribeAll: Subject<any>;
 
     constructor(
-        private _clienteListService: ClienteListService,
-        private _clienteService: ClienteService,
+        private _atendenteListService: AtendenteListService,
+        private _atendenteService: AtendenteService,
         private _router: Router,
         public matDialog: MatDialog
     ) {
@@ -56,21 +56,21 @@ export class ClienteListComponent implements OnInit {
 
     refreshLista() {
         this.filter.nativeElement.value = '';
-        this._clienteListService.getCliente();
+        this._atendenteListService.getAtendente();
         this.dataSource.filter = this.filter.nativeElement.value;
     }
 
-    excluirCliente(id: any) {
+    excluirAtendente(id: any) {
         let loadingComponent = this.matDialog.open(LoadingDialogComponent);
-        this._clienteService.handleFormRemoveValue(id).then(() => {
-            this._clienteListService.getCliente();
+        this._atendenteService.handleFormRemoveValue(id).then(() => {
+            this._atendenteListService.getAtendente();
         }).finally(() => {
             loadingComponent.close();
         })
     }
 
     ngOnInit(): void {
-        this.dataSource = new FilesDataSource(this._clienteListService, this.paginator, this.sort);
+        this.dataSource = new FilesDataSource(this._atendenteListService, this.paginator, this.sort);
 
         fromEvent(this.filter.nativeElement, 'keyup')
             .pipe(
@@ -83,7 +83,7 @@ export class ClienteListComponent implements OnInit {
                     return;
                 }
                 this.paginator.firstPage();
-                this._clienteListService.getCliente();
+                this._atendenteListService.getAtendente();
                 this.dataSource.filter = this.filter.nativeElement.value;
             });
 
@@ -98,17 +98,17 @@ export class FilesDataSource extends DataSource<any>
     /**
      * Constructor
      *
-     * @param {ClienteListService} _clienteListService
+     * @param {AtendenteListService} _atendenteListService
      * @param {MatPaginator} _MatPaginator
      * @param {MatSort} _matSort
      */
     constructor(
-        private _clienteListService: ClienteListService,
+        private _atendenteListService: AtendenteListService,
         private _MatPaginator: MatPaginator,
         private _matSort: MatSort
     ) {
         super();
-        this.filteredData = this._clienteListService.clientes;
+        this.filteredData = this._atendenteListService.atendentes;
     }
 
     /**
@@ -118,7 +118,7 @@ export class FilesDataSource extends DataSource<any>
      */
     connect(): Observable<any[]> {
         const displayDataChanges = [
-            this._clienteListService.onClientesChanged,
+            this._atendenteListService.onAtendentesChanged,
             this._MatPaginator.page,
             this._filterChange,
             this._matSort.sortChange
@@ -127,7 +127,7 @@ export class FilesDataSource extends DataSource<any>
         return merge(...displayDataChanges)
             .pipe(
                 map(() => {
-                    let data = this._clienteListService.clientes.slice();
+                    let data = this._atendenteListService.atendentes.slice();
 
                     data = this.filterData(data);
 
@@ -203,6 +203,9 @@ export class FilesDataSource extends DataSource<any>
                     break;
                 case 'endereco':
                     [propertyA, propertyB] = [a.endereco, b.endereco];
+                    break;
+                case 'cargo':
+                    [propertyA, propertyB] = [a.cargo, b.cargo];
                     break;
                 case 'datanasc':
                     [propertyA, propertyB] = [moment(a.data_nascimento, "YYYY-MM-DD").toISOString(), moment(b.data_nascimento, "YYYY-MM-DD").toISOString()];

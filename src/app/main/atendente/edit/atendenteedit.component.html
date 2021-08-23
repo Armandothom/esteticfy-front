@@ -13,7 +13,7 @@
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="center center">
 
-                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/cliente'">
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/atendente'">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
 
@@ -25,7 +25,7 @@
                             edit
                         </mat-icon>
                         <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                            Editar cliente
+                            Editar atendente
                         </span>
                     </div>
                 </div>
@@ -36,33 +36,42 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" id="dados-clientesedit">
+        <div class="content-card" id="dados-atendentesedit">
 
             <!-- CONTENT -->
             <div class="content">
 
                 <legend>
-                    <strong>EDITAR CLIENTE</strong>
+                    <strong>EDITAR ATENDENTE</strong>
                 </legend>
 
-                <form name="clienteForm" [formGroup]="clienteForm" class="product w-100-p" 
+                <form name="atendenteForm" [formGroup]="atendenteForm" class="product w-100-p" 
                 (ngSubmit)="onSubmit()">
 
                 <div class="tab-content p-24">
                     <div 
                     fxLayout="row" fxLayoutAlign="center center" 
-                    class="error-class"><span fxLayout="row" *ngIf="clienteForm.invalid && 
-                    (clienteForm.controls.nome.invalid && clienteForm.controls.nome.touched) ||
-                    (clienteForm.controls.cpf.invalid && clienteForm.controls.cpf.touched) ||
-                    (clienteForm.controls.endereco.invalid && clienteForm.controls.endereco.touched) ||
-                    (clienteForm.controls.data_nascimento.invalid && clienteForm.controls.data_nascimento.touched)"
+                    class="error-class"><span fxLayout="row" *ngIf="atendenteForm.invalid && 
+                    (atendenteForm.controls.nome.invalid && atendenteForm.controls.nome.touched) ||
+                    (atendenteForm.controls.cpf.invalid && atendenteForm.controls.cpf.touched) ||
+                    (atendenteForm.controls.endereco.invalid && atendenteForm.controls.endereco.touched) ||
+                    (atendenteForm.controls.data_nascimento.invalid && atendenteForm.controls.data_nascimento.touched) ||
+                    (atendenteForm.controls.cargo.invalid && atendenteForm.controls.cargo.touched)"
                     >Preencha todos os campos destacados.</span></div>
 
                     <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
                         <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Nome*</div>
                         <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
                             <input matInput autocomplete="off" formControlName="nome" 
-                            placeholder="Nome do cliente*">
+                            placeholder="Nome do atendente*">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                        <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Cargo*</div>
+                        <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
+                            <input matInput autocomplete="off" formControlName="cargo" 
+                            placeholder="Cargo da atendente*">
                         </mat-form-field>
                     </div>
 
@@ -70,7 +79,7 @@
                         <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Senha*</div>
                         <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
                             <input matInput autocomplete="off" formControlName="senha" 
-                            placeholder="Senha do cliente*">
+                            placeholder="Senha do atendente*">
                         </mat-form-field>
                     </div>
 
@@ -86,20 +95,20 @@
                         <div class="campo-form" fxFlex="20%" fxFlex.xs="100%">Endereço*</div>
                         <mat-form-field fxFlex="60%" fxFlex.xs="70px" class="input-form">
                             <input matInput autocomplete="off" formControlName="endereco" 
-                            placeholder="Endereço do cliente*">
+                            placeholder="Endereço do atendente*">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
                         <div class="campo-form" fxFlex="20%">Data Nascimento*</div>
                         <mat-form-field fxFlex="60%" class="input-form"
-                            (click)="openPicker(inputDate, pickerCliente)">
+                            (click)="openPicker(inputDate, pickerAtendente)">
                             <input mask="00/00/0000" placeholder="Data do Nascimento*" #inputDate
                                 formControlName="data_nascimento" matInput>
                             <input style="display:none" 
-                                (dateChange)="setValorDatePicker($event)" [matDatepicker]="pickerCliente">
-                            <mat-datepicker-toggle matSuffix [for]="pickerCliente"></mat-datepicker-toggle>
-                            <mat-datepicker touchUi="true" #pickerCliente></mat-datepicker>
+                                (dateChange)="setValorDatePicker($event)" [matDatepicker]="pickerAtendente">
+                            <mat-datepicker-toggle matSuffix [for]="pickerAtendente"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi="true" #pickerAtendente></mat-datepicker>
                         </mat-form-field>
                     </div>
 
@@ -122,7 +131,7 @@
 
                         <div fxLayout="row" fxLayoutAlign="center center">
                             <button mat-raised-button class="submitButton" 
-                            [disabled]="!clienteForm.valid || isEnviandoForm === true">Salvar</button>
+                            [disabled]="!atendenteForm.valid || isEnviandoForm === true">Salvar</button>
                         </div>
                     </div>
 

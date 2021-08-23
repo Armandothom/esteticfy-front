@@ -9,6 +9,13 @@ export const navigation: FuseNavigation[] = [
         url: '/cliente',
     },
     {
+        id: 'atendentes',
+        title: 'ATENDENTES',
+        type: 'item',
+        icon: 'supervisor_account',
+        url: '/atendente',
+    },
+    {
         id: 'saloes',
         title: 'SALÕES',
         type: 'item',
