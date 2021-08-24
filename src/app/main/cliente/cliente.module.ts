@@ -30,12 +30,14 @@ import { ClienteEditService } from './edit/clienteedit.service';
 import { ClienteAddService } from './add/clienteadd.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+import { AuthService } from 'app/shared/services/auth.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const routes: Routes = [
     {
         path: '',
         component: ClienteListComponent,
+        canActivate: [AuthService],
         resolve: {
             data: ClienteListService
         },
@@ -43,6 +45,7 @@ const routes: Routes = [
     {
         path: 'add',
         component: ClienteAddComponent,
+        canActivate: [AuthService],
         resolve: {
             data: ClienteAddService
         },
@@ -50,6 +53,7 @@ const routes: Routes = [
     {
         path: 'edit/:id',
         component: ClienteEditComponent,
+        canActivate: [AuthService],
         resolve: {
             data: ClienteEditService
         },

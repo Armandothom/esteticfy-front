@@ -22,6 +22,7 @@ import { ApiService } from './shared/services/api.service';
 import { LoadingDialogComponent } from './shared/components/loading-dialog/loading-dialog.component';
 import { DialogErro } from './shared/components/dialog-erro/dialog-erro.component';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { LoginModule } from './main/login/login.module';
 
 const appRoutes: Routes = [
     {
@@ -35,6 +36,10 @@ const appRoutes: Routes = [
     {
         path      : 'salao',
         loadChildren: './main/saloes/salao.module#SalaoModule'
+    },
+    {
+        path      : 'login',
+        loadChildren: './main/login/login.module#LoginModule'
     },
     {
         path      : '**',

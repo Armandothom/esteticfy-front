@@ -30,12 +30,14 @@ import { AtendenteEditService } from './edit/atendenteedit.service';
 import { AtendenteAddService } from './add/atendenteadd.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+import { AuthService } from 'app/shared/services/auth.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const routes: Routes = [
     {
         path: '',
         component: AtendenteListComponent,
+        canActivate: [AuthService],
         resolve: {
             data: AtendenteListService
         },
@@ -43,6 +45,7 @@ const routes: Routes = [
     {
         path: 'add',
         component: AtendenteAddComponent,
+        canActivate: [AuthService],
         resolve: {
             data: AtendenteAddService
         },
@@ -50,6 +53,7 @@ const routes: Routes = [
     {
         path: 'edit/:id',
         component: AtendenteEditComponent,
+        canActivate: [AuthService],
         resolve: {
             data: AtendenteEditService
         },

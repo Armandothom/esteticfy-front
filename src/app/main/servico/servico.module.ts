@@ -20,47 +20,51 @@ import { IConfig, NgxMaskModule } from 'ngx-mask'
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { getPortuguesPaginatorIntl } from './paginator'
-import { ClienteAddComponent } from './add/servicoadd.component'
-import { ClienteListComponent } from './list/servicolist.component';
-import { ClienteListService } from './list/servicolist.service'
-import { ClienteEditComponent } from './edit/servicoedit.component'
-import { ClienteService } from './servico.service'
+import { ServicoAddComponent } from './add/servicoadd.component'
+import { ServicoListComponent } from './list/servicolist.component';
+import { ServicoListService } from './list/servicolist.service'
+import { ServicoEditComponent } from './edit/servicoedit.component'
+import { ServicoService } from './servico.service'
 import { MatDialogModule } from '@angular/material/dialog';
-import { ClienteEditService } from './edit/servicoedit.service';
-import { ClienteAddService } from './add/servicoadd.service';
+import { ServicoEditService } from './edit/servicoedit.service';
+import { ServicoAddService } from './add/servicoadd.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+import { AuthService } from 'app/shared/services/auth.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const routes: Routes = [
     {
         path: '',
-        component: ClienteListComponent,
+        component: ServicoListComponent,
+        canActivate: [AuthService],
         resolve: {
-            data: ClienteListService
+            data: ServicoListService
         },
     },
     {
         path: 'add',
-        component: ClienteAddComponent,
+        component: ServicoAddComponent,
+        canActivate: [AuthService],
         resolve: {
-            data: ClienteAddService
+            data: ServicoAddService
         },
     },
     {
         path: 'edit/:id',
-        component: ClienteEditComponent,
+        component: ServicoEditComponent,
+        canActivate: [AuthService],
         resolve: {
-            data: ClienteEditService
+            data: ServicoEditService
         },
     }
 ];
 
 @NgModule({
     declarations: [
-        ClienteListComponent,
-        ClienteAddComponent,
-        ClienteEditComponent,
+        ServicoListComponent,
+        ServicoAddComponent,
+        ServicoEditComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -93,13 +97,13 @@ const routes: Routes = [
         MatAutocompleteModule
     ],
     providers: [
-        ClienteListService, { provide: MatPaginatorIntl, useValue: getPortuguesPaginatorIntl() },
-        ClienteEditService,
-        ClienteAddService,
-        ClienteService
+        ServicoListService, { provide: MatPaginatorIntl, useValue: getPortuguesPaginatorIntl() },
+        ServicoEditService,
+        ServicoAddService,
+        ServicoService
     ],
 })
 
-export class ClienteModule {
+export class ServicoModule {
 
 }

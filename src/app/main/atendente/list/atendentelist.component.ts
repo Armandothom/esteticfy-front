@@ -24,7 +24,7 @@ import * as moment from 'moment';
 })
 export class AtendenteListComponent implements OnInit {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['nome', 'cpf', 'endereco', 'cargo', 'datanasc', 'salao', 'acoes'];
+    displayedColumns = ['nome', 'cpf', 'endereco', 'cargo', 'datanasc', 'acoes'];
     inputSearch = '';
     @ViewChild(MatPaginator, { static: true })
     paginator: MatPaginator;

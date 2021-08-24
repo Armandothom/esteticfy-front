@@ -30,12 +30,14 @@ import { SalaoEditService } from './edit/salaoedit.service';
 import { SalaoAddService } from './add/salaoadd.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+import { AuthService } from 'app/shared/services/auth.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const routes: Routes = [
     {
         path: '',
         component: SalaoListComponent,
+        canActivate: [AuthService],
         resolve: {
             data: SalaoListService
         },
@@ -43,6 +45,7 @@ const routes: Routes = [
     {
         path: 'add',
         component: SalaoAddComponent,
+        canActivate: [AuthService],
         resolve: {
             data: SalaoAddService
         },
@@ -50,6 +53,7 @@ const routes: Routes = [
     {
         path: 'edit/:id',
         component: SalaoEditComponent,
+        canActivate: [AuthService],
         resolve: {
             data: SalaoEditService
         },

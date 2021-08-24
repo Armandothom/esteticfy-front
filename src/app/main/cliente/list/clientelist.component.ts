@@ -24,7 +24,7 @@ import * as moment from 'moment';
 })
 export class ClienteListComponent implements OnInit {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['nome', 'cpf', 'endereco', 'datanasc', 'salao', 'acoes'];
+    displayedColumns = ['nome', 'cpf', 'endereco', 'datanasc', 'acoes'];
     inputSearch = '';
     @ViewChild(MatPaginator, { static: true })
     paginator: MatPaginator;
