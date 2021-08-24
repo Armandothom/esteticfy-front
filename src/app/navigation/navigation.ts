@@ -23,6 +23,13 @@ export const navigation: FuseNavigation[] = [
         url: '/salao',
     },
     {
+        id: 'servicos',
+        title: 'SERVIÇOS',
+        type: 'item',
+        icon: 'post_add',
+        url: '/servico',
+    },
+    {
         id: 'vendas',
         title: 'VENDAS',
         type: 'item',

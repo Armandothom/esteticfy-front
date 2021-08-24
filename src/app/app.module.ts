@@ -42,6 +42,10 @@ const appRoutes: Routes = [
         loadChildren: './main/login/login.module#LoginModule'
     },
     {
+        path      : 'servico',
+        loadChildren: './main/servico/servico.module#ServicoModule'
+    },
+    {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
     }
