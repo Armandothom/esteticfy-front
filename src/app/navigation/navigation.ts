@@ -36,4 +36,11 @@ export const navigation: FuseNavigation[] = [
         icon: 'attach_money',
         url: '/venda',
     },
+    {
+        id: 'agenda',
+        title: 'AGENDA',
+        type: 'item',
+        icon: 'event',
+        url: '/agenda',
+    },
 ];

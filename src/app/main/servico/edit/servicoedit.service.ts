@@ -35,7 +35,7 @@ export class ServicoEditService implements Resolve<any>
     getServico (id : any)
     {
         return new Promise((resolve, reject) => {
-            this._api.get('/cliente/' + id)
+            this._api.get('/servico/' + id)
                 .subscribe((response: any) => {
                     this.servico = response;
                     resolve(response);

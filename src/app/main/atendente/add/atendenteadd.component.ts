@@ -104,6 +104,7 @@ export class AtendenteAddComponent implements OnInit, OnDestroy {
                 loadingSpinner.close();
             })
         }).catch(err => {
+            console.log(err)
             this.atendenteForm.get('data_nascimento').setValue(moment(this.atendenteForm.get('data_nascimento').value, "YYYY-MM-DD").format("DD/MM/YYYY"))
             this.matDialog.open(DialogErro, {data : {
                 titleErro : "Erro ao inserir",

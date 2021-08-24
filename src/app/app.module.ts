@@ -50,6 +50,10 @@ const appRoutes: Routes = [
         loadChildren: './main/venda/venda.module#VendaModule'
     },
     {
+        path      : 'agenda',
+        loadChildren: './main/agenda/agenda.module#AgendaModule'
+    },
+    {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
     }
