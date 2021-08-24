@@ -46,11 +46,14 @@ const appRoutes: Routes = [
         loadChildren: './main/servico/servico.module#ServicoModule'
     },
     {
+        path      : 'venda',
+        loadChildren: './main/venda/venda.module#VendaModule'
+    },
+    {
         path      : '**',
         loadChildren: './main/sample/sample.module#SampleModule'
     }
 ];
-
 @NgModule({
     declarations: [
         AppComponent,

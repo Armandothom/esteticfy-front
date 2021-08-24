@@ -1,0 +1,136 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/venda'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="logo-icon s-32 mr-16"
+                            [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                            list_alt
+                        </mat-icon>
+                        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            Adicionar vendas
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" id="dados-vendaadd">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <legend>
+                    <strong>INSERIR VENDA</strong>
+                </legend>
+
+                <form name="vendaForm" [formGroup]="vendaForm" class="product w-100-p" 
+                (ngSubmit)="onSubmit()">
+
+                    <div class="tab-content p-24">
+                        <div 
+                        fxLayout="row" fxLayoutAlign="center center" 
+                        class="error-class"><span fxLayout="row" *ngIf="vendaForm.invalid && 
+                        (vendaForm.controls.cliente_id.invalid && vendaForm.controls.cliente_id.touched) ||
+                        (vendaForm.controls.atendente_id.invalid && vendaForm.controls.atendente_id.touched) ||
+                        (vendaForm.controls.servico_id.invalid && vendaForm.controls.servico_id.touched) ||
+                        (vendaForm.controls.valor.invalid && vendaForm.controls.valor.touched)"
+                        >Preencha todos os campos destacados.</span></div>
+
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Valor*</div>
+                            <mat-form-field fxFlex="60%" class="input-form">
+                                <input matInput autocomplete="off" currencyMask [(ngModel)]="value"
+                                    formControlName="valor" placeholder="Valor* em R$"
+                                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align:'left' }">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Cliente*</div>
+                            <mat-form-field fxFlex="60%" class="input-form">
+                                <input formControlName="cliente_input" matInput [matAutocomplete]="cliente"
+                                    placeholder="Cliente*">
+                                <button type="button" matSuffix mat-stroked-button>
+                                    <span class="material-icons">search</span>
+                                </button>
+                                <mat-autocomplete (optionSelected)="setFromCliente($event)" #cliente="matAutocomplete">
+                                    <mat-option *ngFor="let cliente of opcoesClientes | async" [value]="cliente">
+                                        <span>{{cliente.nome}}</span>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Atendente*</div>
+                            <mat-form-field fxFlex="60%" class="input-form">
+                                <input formControlName="atendente_input" matInput [matAutocomplete]="atendente"
+                                    placeholder="Atendente*">
+                                <button type="button" matSuffix mat-stroked-button>
+                                    <span class="material-icons">search</span>
+                                </button>
+                                <mat-autocomplete (optionSelected)="setFromAtendente($event)" #atendente="matAutocomplete">
+                                    <mat-option *ngFor="let atendente of opcoesAtendentes | async" [value]="atendente">
+                                        <span>{{atendente.nome}}</span>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                            <div class="campo-form" fxFlex="20%">Servico*</div>
+                            <mat-form-field fxFlex="60%" class="input-form">
+                                <input formControlName="servico_input" matInput [matAutocomplete]="servico"
+                                    placeholder="Servico*">
+                                <button type="button" matSuffix mat-stroked-button>
+                                    <span class="material-icons">search</span>
+                                </button>
+                                <mat-autocomplete (optionSelected)="setFromServico($event)" #servico="matAutocomplete">
+                                    <mat-option *ngFor="let servico of opcoesServico | async" [value]="servico">
+                                        <span>{{servico.nome}}</span>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button class="submitButton" 
+                            [disabled]="!vendaForm.valid">Adicionar</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

@@ -34,6 +34,6 @@ export const navigation: FuseNavigation[] = [
         title: 'VENDAS',
         type: 'item',
         icon: 'attach_money',
-        url: '/vendas',
+        url: '/venda',
     },
 ];
