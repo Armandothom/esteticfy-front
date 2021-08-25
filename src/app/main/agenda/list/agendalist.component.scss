@@ -74,6 +74,15 @@ agenda-list {
                     display: flex;
                     align-items: center;
                 }
+                .wrapper-add {
+                    padding: 10px;
+                    button {
+                        background-color: #880e4f !important;
+                        color: white !important;
+                        font-size: 18px;
+                        width: 150px;
+                    }
+                }
                 .group-time{
                     width: 300px; 
                     display: flex; 

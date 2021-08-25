@@ -1,0 +1,120 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/agenda'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="logo-icon s-32 mr-16"
+                            [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                            list_alt
+                        </mat-icon>
+                        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            Adicionar evento
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" id="dados-agendaadd">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <legend>
+                    <strong>INSERIR EVENTO</strong>
+                </legend>
+
+                <form name="agendaForm" [formGroup]="agendaForm" class="product w-100-p" 
+                (ngSubmit)="onSubmit()">
+
+                <div class="tab-content p-24">
+                    <div 
+                    fxLayout="row" fxLayoutAlign="center center" 
+                    class="error-class"><span fxLayout="row" *ngIf="agendaForm.invalid && 
+                    (agendaForm.controls.cliente_id.invalid && agendaForm.controls.cliente_id.touched) ||
+                    (agendaForm.controls.servico_id.invalid && agendaForm.controls.servico_id.touched)"
+                    >Preencha todos os campos destacados.</span></div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" *ngIf="showClientes">
+                        <div class="campo-form" fxFlex="20%">Cliente*</div>
+                        <mat-form-field fxFlex="60%" class="input-form">
+                            <input formControlName="cliente_input" matInput [matAutocomplete]="cliente"
+                                placeholder="Cliente*">
+                            <button type="button" matSuffix mat-stroked-button>
+                                <span class="material-icons">search</span>
+                            </button>
+                            <mat-autocomplete (optionSelected)="setFromCliente($event)" #cliente="matAutocomplete">
+                                <mat-option *ngFor="let cliente of opcoesClientes | async" [value]="cliente">
+                                    <span>{{cliente.nome}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                        <div class="campo-form" fxFlex="20%">Servico*</div>
+                        <mat-form-field fxFlex="60%" class="input-form">
+                            <input formControlName="servico_input" matInput [matAutocomplete]="servico"
+                                placeholder="Servico*">
+                            <button type="button" matSuffix mat-stroked-button>
+                                <span class="material-icons">search</span>
+                            </button>
+                            <mat-autocomplete (optionSelected)="setFromServico($event)" #servico="matAutocomplete">
+                                <mat-option *ngFor="let servico of opcoesServico | async" [value]="servico">
+                                    <span>{{servico.nome}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                        <div class="campo-form" fxFlex="20%">Horário*</div>
+                        <mat-form-field fxFlex="60%" class="input-form" (click)="picker.open()">
+                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Horário" readonly formControlName="horario">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+                               [touchUi]="true" [color]="color" [enableMeridian]="false" [defaultTime]="[6, 0, 0]"
+                               [disableMinute]="false" [hideTime]="false">
+                            </ngx-mat-datetime-picker>
+                         </mat-form-field>
+                    </div>
+
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button class="submitButton" 
+                            [disabled]="!agendaForm.valid">Adicionar</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

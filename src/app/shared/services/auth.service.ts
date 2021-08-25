@@ -15,10 +15,10 @@ export class AuthService implements CanActivate {
                 console.log(val)
                 console.log("entrou subscribe USER ")
               })
-              this.getUser();
+              this.setUser();
    }
 
-  getUser() {
+   setUser() {
     this.$user.next(JSON.parse(localStorage.getItem('user')));
   }
 

@@ -42,31 +42,7 @@ export class AgendaListComponent implements OnInit {
         }
       };
 
-    events: CalendarEvent[] = [
-        {
-            start: moment().hours(10).toDate(),
-            end: moment().hours(12).toDate(),
-            title: 'A draggable and resizable event',
-            color: this.colors.red,
-            resizable: {
-              beforeStart: true,
-              afterEnd: true,
-            },
-        },
-        {
-            start: moment().add(2, "day").toDate(),
-            end: moment().add(2, "day").toDate(),
-            title: 'A 3 day event',
-            id : 10,
-            color: this.colors.red,
-            allDay: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: false,
-        },
-    ];
+    events: CalendarEvent[];
     constructor(
         private _agendaListService: AgendaListService,
         private _agendaService: AgendaService,
@@ -74,15 +50,17 @@ export class AgendaListComponent implements OnInit {
         public matDialog: MatDialog
     ) {
         this._unsubscribeAll = new Subject();
+        this.events = this._agendaListService.agendas;
     }
 
 
     ngOnInit(): void {
+        console.log(this._agendaListService.events)
         console.log(this.events)
 
     }
 
-    eventClicked(event) {
-        console.log(event)
+    openEvento(event) {
+        this._router.navigate(['agenda/edit/' + event.event.id])
     }
 }
