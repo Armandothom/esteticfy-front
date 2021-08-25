@@ -16,7 +16,11 @@ export class ApiService {
         private http: HttpClient,
         private _authService : AuthService
     ) {
-        this.user = this._authService.getUser();
+        this._authService.$user.subscribe((val) => {
+            this.user = val;
+        });
+        console.log("USER NO API")
+        console.log(this.user)
     }
 
     get(endpoint): Observable<any> {
@@ -26,7 +30,9 @@ export class ApiService {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Access-Control-Allow-Headers': 'Content-Type',
-                'Id-Salao': this.user ? this.user.salao_id.toString() : null,
+                'id-salao': this.user ? this.user.salao_id.toString() : '',
+                'user-id': this.user ? this.user.id.toString() : '',
+                'is-cliente' : this.user ? this.user.isCliente.toString() : ''
             })
         };
         return this.http.get(url, httpOptions);
@@ -39,9 +45,13 @@ export class ApiService {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Access-Control-Allow-Headers': 'Content-Type',
-                'Id-Salao': this.user ? this.user.salao_id.toString() : null,
+                'id-salao': this.user ? this.user.salao_id.toString() : '',
+                'user-id': this.user ? this.user.id.toString() : '',
+                'is-cliente' : this.user ? this.user.isCliente.toString() : ''
             })
         };
+        console.log("post com")
+        console.log(httpOptions)
         return this.http.post(url, formValue, httpOptions);
     }
 

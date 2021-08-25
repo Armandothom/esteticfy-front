@@ -44,21 +44,20 @@ export class AgendaListComponent implements OnInit {
 
     events: CalendarEvent[] = [
         {
-            start: moment().toDate(),
-            end: moment().toDate(),
-            title: 'A 3 day event',
+            start: moment().hours(10).toDate(),
+            end: moment().hours(12).toDate(),
+            title: 'A draggable and resizable event',
             color: this.colors.red,
-            allDay: true,
             resizable: {
-                beforeStart: true,
-                afterEnd: true,
+              beforeStart: true,
+              afterEnd: true,
             },
-            draggable: false,
         },
         {
             start: moment().add(2, "day").toDate(),
             end: moment().add(2, "day").toDate(),
             title: 'A 3 day event',
+            id : 10,
             color: this.colors.red,
             allDay: true,
             resizable: {
@@ -79,6 +78,7 @@ export class AgendaListComponent implements OnInit {
 
 
     ngOnInit(): void {
+        console.log(this.events)
 
     }
 

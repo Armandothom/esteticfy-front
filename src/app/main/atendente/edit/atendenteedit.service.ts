@@ -40,7 +40,6 @@ export class AtendenteEditService implements Resolve<any>
             this._api.get('/atendente/' + id)
                 .subscribe((response: any) => {
                     this.atendente = response;
-                    console.log(this.atendente)
                     resolve(response);
                 }, reject);
         });
@@ -50,7 +49,6 @@ export class AtendenteEditService implements Resolve<any>
         return new Promise((resolve, reject) => {
             this._api.get('/salao')
                 .subscribe((response: any) => {
-                    console.log(response)
                     this.saloes = response;
                     resolve(response);
                 }, reject);

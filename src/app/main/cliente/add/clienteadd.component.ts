@@ -59,7 +59,6 @@ export class ClienteAddComponent implements OnInit, OnDestroy {
                 map(value => typeof value === 'string' ? value : value.salao_input),
                 map(value => value ? this.filtrarSaloes(value) : this._clienteAddService.saloes.slice())
             )
-            console.log(this._clienteAddService.saloes)
     }
 
 

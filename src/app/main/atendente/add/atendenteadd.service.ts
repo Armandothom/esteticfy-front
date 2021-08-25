@@ -35,7 +35,6 @@ export class AtendenteAddService
         return new Promise((resolve, reject) => {
             this._api.get('/salao')
                 .subscribe((response: any) => {
-                    console.log(response)
                     this.saloes = response;
                     resolve(response);
                 }, reject);

@@ -66,9 +66,10 @@ export class LoginComponent implements OnInit {
             });
             this.loginForm.value.cpf = this.loginForm.value.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
             this._loginService.authLogin(this.loginForm.value).then((user : any) => {
+                console.log("SETOU USER")
                 localStorage.setItem('user', JSON.stringify(user));
-                this._router.navigate(['/agenda']);
             }).catch((err) => {
+                console.log(err)
                 this.matDialog.open(DialogErro, {
                     data : {
                         titleErro : "Credenciais inválidas",
@@ -77,6 +78,10 @@ export class LoginComponent implements OnInit {
                 })
             }).finally(() => {
                 loadingSpinner.close();
+                if(localStorage.getItem('user')) {
+                    console.log("VAI NAVIGATE")
+                    this._router.navigate(['/agenda']);
+                }
             })
     }
 
