@@ -3,6 +3,7 @@ import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { AuthService } from 'app/shared/services/auth.service';
 
 @Component({
     selector       : 'fuse-navigation',
@@ -13,6 +14,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 })
 export class FuseNavigationComponent implements OnInit
 {
+    usuario : any;
     @Input()
     layout = 'vertical';
 
@@ -29,11 +31,15 @@ export class FuseNavigationComponent implements OnInit
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
-        private _fuseNavigationService: FuseNavigationService
+        private _fuseNavigationService: FuseNavigationService,
+        private _authService : AuthService
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+        _authService.$user.subscribe((val) => {
+            this.usuario = val;
+        })
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -71,5 +77,15 @@ export class FuseNavigationComponent implements OnInit
              // Mark for check
              this._changeDetectorRef.markForCheck();
          });
+         this.navigation = this.navigation.filter((navGroup) => {
+             if(this.usuario && this.usuario.isCliente === false) {
+                 return true;
+             }
+             else if(this.usuario && this.usuario.isCliente && navGroup.clienteCanSee) {
+                 return true;
+             } else {
+                 return false;
+             }
+         })
     }
 }

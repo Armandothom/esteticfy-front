@@ -9,6 +9,7 @@ export interface FuseNavigationItem
     url?: string;
     classes?: string;
     exactMatch?: boolean;
+    clienteCanSee?: boolean;
     externalUrl?: boolean;
     openInNewTab?: boolean;
     function?: any;
