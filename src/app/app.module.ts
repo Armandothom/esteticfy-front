@@ -55,7 +55,7 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
-        loadChildren: './main/sample/sample.module#AgendaModule'
+        loadChildren: './main/agenda/agenda.module#AgendaModule'
     }
 ];
 @NgModule({
