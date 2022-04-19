@@ -17,7 +17,6 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from './main/sample/sample.module';
 import { ApiService } from './shared/services/api.service';
 import { LoadingDialogComponent } from './shared/components/loading-dialog/loading-dialog.component';
 import { DialogErro } from './shared/components/dialog-erro/dialog-erro.component';
