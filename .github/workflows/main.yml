@@ -27,9 +27,10 @@ jobs:
 
       - name: Ação de merge com master
         run: |
-          git checkout origin/master
+          git fetch
+          git checkout master
           git pull
-          git merge origin/release --no-ff origin/master -m "Auto-merge release para prod"
+          git merge origin/release --no-ff master -m "Auto-merge release para prod"
           git push
           
   merge-dev:
@@ -40,7 +41,9 @@ jobs:
 
       - name: Ação de merge com development
         run: |
-          git checkout origin/development
+          git remote update
+          git fetch
+          git checkout development
           git pull
-          git merge origin/release --no-ff origin/development -m "Auto-merge release para dev"
+          git merge origin/release --no-ff development -m "Auto-merge release para dev"
           git push
