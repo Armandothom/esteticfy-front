@@ -1,0 +1,44 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ "release" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Comecando run para merge
+
+  merge-master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@mergemaster
+
+      - name: Run a one-line script
+        run: |
+          git checkout master
+          git pull
+          git merge release --no-ff master -m "Auto-merge release para prod"
+          git push
+          
+  merge-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@mergemaster
+
+      - name: Run a one-line script
+        run: |
+          git checkout development
+          git pull
+          git merge release --no-ff development -m "Auto-merge release para dev"
+          git push
