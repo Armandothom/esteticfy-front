@@ -23,7 +23,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - name : Configura usuario do commit
+      - run : |
+          git config user.name "Workflow committer"
+          git config user.email "<>"
       - name: Ação de merge com master
         run: |
           git fetch
@@ -37,7 +40,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - name : Configura usuario do commit
+      - run : |
+          git config user.name "Workflow committer"
+          git config user.email "<>"
       - name: Ação de merge com development
         run: |
           git fetch
