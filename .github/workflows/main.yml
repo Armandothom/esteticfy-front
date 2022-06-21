@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@mergemaster
+      - uses: actions/checkout@v3
 
       - name: Run a one-line script
         run: |
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@mergemaster
+      - uses: actions/checkout@v3
 
       - name: Run a one-line script
         run: |
