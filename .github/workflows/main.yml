@@ -24,6 +24,7 @@ jobs:
     steps:
       - name : Configura usuario do commit
         run : |
+          git init
           git config user.name "Workflow committer"
           git config user.email "<>"
       - name: Ação de merge com master
@@ -40,6 +41,7 @@ jobs:
     steps:
       - name : Configura usuario do commit
         run : |
+          git init
           git config user.name "Workflow committer"
           git config user.email "<>"
       - name: Ação de merge com development
