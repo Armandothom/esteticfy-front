@@ -22,13 +22,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
       - name : Configura usuario do commit
-      - run : |
+        uses: actions/checkout@v3
+        run : |
           git config user.name "Workflow committer"
           git config user.email "<>"
-      - uses: actions/checkout@v3
       - name: Ação de merge com master
+        uses: actions/checkout@v3
         run: |
           git fetch
           git checkout master
@@ -40,13 +40,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
       - name : Configura usuario do commit
-      - run : |
+        uses: actions/checkout@v3
+        run : |
           git config user.name "Workflow committer"
           git config user.email "<>"
-      - uses: actions/checkout@v3
       - name: Ação de merge com development
+        uses: actions/checkout@v3
         run: |
           git fetch
           git checkout development
