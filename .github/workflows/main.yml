@@ -32,7 +32,7 @@ jobs:
           git fetch
           git checkout master
           git pull
-          git merge origin/release -s theirs --allow-unrelated-histories --no-ff master -m "Auto-merge release para prod"
+          git merge origin/release -s ours --allow-unrelated-histories --no-ff master -m "Auto-merge release para prod"
           git push
           
   merge-dev:
@@ -49,5 +49,5 @@ jobs:
           git fetch
           git checkout development
           git pull
-          git merge origin/release -s theirs --allow-unrelated-histories --no-ff development -m "Auto-merge release para dev"
+          git merge origin/release -s ours --allow-unrelated-histories --no-ff development -m "Auto-merge release para dev"
           git push
