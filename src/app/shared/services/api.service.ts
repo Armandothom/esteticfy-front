@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 
-//test1
+//Merge to check
 @Injectable({
     providedIn: 'root'
 })
