@@ -34,7 +34,7 @@ jobs:
           git pull
           git checkout master
           git pull
-          git merge --theirs release -s ours --allow-unrelated-histories -m "Auto-merge release para prod"
+          git merge --theirs release --allow-unrelated-histories -m "Auto-merge release para prod"
           git push
           
   merge-dev:
